@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCR Pembaca Nomor Transaksi</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔄 OCR Pembaca Nomor Transaksi</h1>
+            <p>Upload gambar atau masukkan URL gambar untuk membaca nomor transaksi secara otomatis</p>
+        </div>
+
+        <div class="instructions">
+            <h3>📋 Panduan Penggunaan:</h3>
+            <ul>
+                <li><strong>Upload Gambar:</strong> Pilih file gambar dari perangkat Anda</li>
+                <li><strong>URL Gambar:</strong> Masukkan URL gambar transaksi yang ingin diproses</li>
+                <li><strong>Format yang Didukung:</strong> JPG, PNG, GIF, BMP</li>
+                <li><strong>Tips:</strong> Pastikan gambar jelas dan angka terbaca dengan baik</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <div class="upload-section">
+                <div>
+                    <h3>📤 Upload Gambar</h3>
+                    <div class="input-group">
+                        <label for="fileInput">Pilih File Gambar:</label>
+                        <input type="file" id="fileInput" accept="image/*">
+                    </div>
+                    <button class="btn" onclick="processUploadedImage()">
+                        <span>🔍 Proses Gambar</span>
+                    </button>
+                </div>
+
+                <div>
+                    <h3>🌐 URL Gambar</h3>
+                    <div class="input-group">
+                        <label for="urlInput">Masukkan URL Gambar:</label>
+                        <input type="url" id="urlInput" placeholder="https://example.com/transaction-image.jpg">
+                    </div>
+                    <button class="btn" onclick="processImageFromUrl()">
+                        <span>🔍 Proses dari URL</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="image-preview" id="imagePreview">
+                <p>Pratinjau gambar akan muncul di sini</p>
+            </div>
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Sedang memproses gambar...</p>
+            </div>
+
+            <div id="messageContainer"></div>
+        </div>
+
+        <div class="card results-section" id="resultsSection" style="display: none;">
+            <h3>📊 Hasil Pembacaan OCR</h3>
+            <div class="result-card">
+                <div class="result-item">
+                    <span class="result-label">Nomor Transaksi:</span>
+                    <span class="result-value" id="transactionNumber">-</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Teks yang Terbaca:</span>
+                    <span id="rawText">-</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Tingkat Akurasi:</span>
+                    <span id="confidence">-</span>
+                </div>
+            </div>
+            <button class="btn btn-secondary" onclick="resetForm()">
+                <span>🔄 Proses Gambar Baru</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Include Tesseract.js dari CDN -->
+    <script src="https://unpkg.com/tesseract.js@v2.1.0/dist/tesseract.min.js"></script>
+    <script src="assets/script.js"></script>
+</body>
+</html>
